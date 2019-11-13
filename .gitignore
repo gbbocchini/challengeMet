@@ -1,7 +1,7 @@
 .pytest_cache
 static
 server
-.wsgipy
+.wsgi
 .ipynb_checkpoints
 Untitled.ipynb
 tests.ipynb
