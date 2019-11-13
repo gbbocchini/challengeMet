@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/gbbocchini/challengeMet.svg?branch=master)](https://travis-ci.org/gbbocchini/challengeMet)
 
 
-
 # Challenge
 API RESTFUL com Swagger, feita em Flask e library Flask-RestPlus. Endpoints buscam dados meteorologicos observados e 
 previsoes advindas de arquivos ```.CSV``` fornecidos no repo original.
