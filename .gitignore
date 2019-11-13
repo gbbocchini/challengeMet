@@ -2,3 +2,9 @@
 static
 server
 .wsgipy
+.ipynb_checkpoints
+Untitled.ipynb
+tests.ipynb
+venv
+.idea
+*__pycache__

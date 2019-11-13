@@ -2,12 +2,12 @@
 
 
 
-#Challenge Somar Meteorologia
+# Challenge
 API RESTFUL com Swagger, feita em Flask e library Flask-RestPlus. Endpoints buscam dados meteorologicos observados e 
 previsoes advindas de arquivos ```.CSV``` fornecidos no repo original.
 
 
-##Estrutura do projeto
+## Estrutura do projeto
 Optei por fazer o projeto em Flask lendo informaçoes da memoria por questao de tempo. Como as informaçoes sao lidas
 diretamente dos CSVs optei por: uma pasta "data" com todos os arquivos CSV (fonte dos dados), uma pasta ```repository``` 
 apenas com objetos que fazem acesso e leitura de dados (todo e qualquer acesso aos arquivos CSV e feito somente
@@ -20,7 +20,7 @@ tabelas/arquivos ```.csv``` puros. As views e controlers sao testados atraves do
 e ```observed_test.py``` no mesmo diretorio de app.py
 
 
-##Execuçao local
+## Execuçao local
 
 - Clone este repositorio (```git clone ...```);
 - Crie um Virtual Env em Python (```python3 -m venv venv```) e ative-o (```source venv/bin/activate```);
@@ -31,14 +31,14 @@ e ```observed_test.py``` no mesmo diretorio de app.py
 Uma versao live podera ser encontrada em: https://somarapi.herokuapp.com/
 
 
-##Testes
+## Testes
 
 Os testes podem ser rodados com ```pytest -v``` dentro do folder clonado e cobrem todas as views bem como funçoes contidas 
 na pasta repository. O repo github esta integrado com TravisCI (que alias: nunca tinha usado! Bem legal, ainda estou me entendendo
 com ele!)
 
  
-##Decisoes
+## Decisoes
 Primeiramente pensei em fazer o desafio com Django e Django Rest FM, porem seria ficar em minha zona de conforto! :)
 Decidi, entao, por fazer Flask lendo infos direto da memoria por nao conhecer o Lambda da AWS e API Gateway, porem, 
 recentemente, na Python Brasil em Riberiao Preto, vi uma palestra bem interessante a respeito de

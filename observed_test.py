@@ -1,8 +1,10 @@
-from repository.observed_repo import list_points, observed_dir_list, read_and_parse
-from app import ObservedPointsAndSinglePointByName
-from app import app
 from flask import request
 import json
+
+from helpers.observed_helpers import observed_singlepoint_search, observed_lat_lon_search, observed_period_search
+from repository.observed_repo import observed_dir_list, list_points
+from app import ObservedPointsAndSinglePointByName
+from app import app
 
 
 app.testing = True
@@ -27,36 +29,24 @@ def test_ObservedPointsAndSinglePointByNameGET():
 
 def test_ObservedPointsAndSinglePointByNamePOST():
     with client as c:
-        rv = c.post("APItesteSomar/observed?cidade=abobora")
+        rv = c.post('APItesteSomar/observed?cidade=abobora')
         cidade = 'abobora'
         cidade = cidade.upper().strip()
         for file in observed_dir_list():
             if cidade in file:
-                temp1 = dict(data=read_and_parse(file.upper()))
-                temp2 = list_points()
-                idxs = [i for i in range(len(temp2))]
-                temp2 = dict(zip(idxs, temp2))
-                for i in range(len(temp2)):
-                    if cidade in temp2[i]['cidade-estado']:
-                        result = {**temp2[i], **temp1}
+                result = observed_singlepoint_search(file, cidade)
         assert request.args['cidade'] == 'abobora'
         assert json.loads(rv.get_data()) == result
 
 
 def test_SinglePointByLatAndLon():
     with client as c:
-        rv = c.post("APItesteSomar/observed/latlon?lat=-23.57&lon=-46.83")
-        lat = "-23.57"
-        lon = "-46.83"
+        rv = c.post('APItesteSomar/observed/latlon?lat=-23.57&lon=-46.83')
+        lat = '-23.57'
+        lon = '-46.83'
         for file in observed_dir_list():
             if lat and lon in file:
-                temp1 = dict(data=read_and_parse(file.upper()))
-                temp2 = list_points()
-                idxs = [i for i in range(len(temp2))]
-                temp2 = dict(zip(idxs, temp2))
-                for i in range(len(temp2)):
-                    if lat in temp2[i]['latitude'] and lon in temp2[i]['longitude']:
-                        result = {**temp2[i], **temp1}
+                result = observed_lat_lon_search(lat, lon, file)
         assert request.args['lat'] == lat
         assert request.args['lon'] == lon
         assert json.loads(rv.get_data()) == result
@@ -64,8 +54,8 @@ def test_SinglePointByLatAndLon():
 
 def test_DataFromSinglePointByDate():
     with client as c:
-        rv = c.post("APItesteSomar/observed/cidadeporperiodos?cidade=abobora&datainicial=2019-08-13&datafinal=2019-09-01")
-        cidade = "abobora"
+        rv = c.post('APItesteSomar/observed/cidadeporperiodos?cidade=abobora&datainicial=2019-08-13&datafinal=2019-09-01')
+        cidade = 'abobora'
         datainicial = '2019-08-13'
         datafinal = '2019-09-01'
         cidade = str(cidade).upper().strip()
@@ -73,13 +63,10 @@ def test_DataFromSinglePointByDate():
         datafinal = str(datafinal).strip()
         for file in observed_dir_list():
             if cidade in file:
-                temp1 = read_and_parse(file.upper())
-                periods_list_1 = [temp1[i]['periods'].split()[0] for i in range(len(temp1))]
-                if datainicial in periods_list_1 and datafinal in periods_list_1:
-                    indexinicial = periods_list_1.index(datainicial)
-                    indexfinal = periods_list_1.index(datafinal)
-                    final_periods = [temp1[i] for i in range(indexinicial, indexfinal + 1)]
-        assert request.args['cidade'] == 'abobora'
+                result = observed_period_search(file, datainicial, datafinal)
+        assert request.args['cidade'] == cidade.lower()
         assert request.args['datainicial'] == datainicial
         assert request.args['datafinal'] == datafinal
-        assert json.loads(rv.get_data()) == final_periods
+        assert json.loads(rv.get_data()) == result
+
+
