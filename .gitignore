@@ -1,10 +1,13 @@
 .pytest_cache
 static
 server
-.wsgi
+wsgi
 .ipynb_checkpoints
 Untitled.ipynb
 tests.ipynb
 venv
 .idea
-*__pycache__
+helpers/__pycache__/
+repository/__pycache__/
+Procfile
+.travis.yml
