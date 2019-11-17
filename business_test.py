@@ -21,9 +21,9 @@ def test_singlepointsearch():
             if cidade in file:
                 result = search.singlepoint_search(file, cidade)
         assert json.loads(rv.get_data()) == result
-        cidade = 'blablalbal'
+        cidade = "blablalbal"
         rv = c.post("APItesteSomar/forecast?cidade=" + cidade)
-        result = {'message': 'Cidade nao existe'}
+        result = {"message": "Cidade nao existe"}
         assert json.loads(rv.get_data()) == result
 
 
@@ -38,7 +38,7 @@ def test_latlonsearch():
                 result = search.lat_lon_search(lat, lon, file)
         assert json.loads(rv.get_data()) == result
         rv = c.post("APItesteSomar/forecast/latlon?lat=22.332&lon=-46.83")
-        result = {'message': 'Coordenadas inexistentes'}
+        result = {"message": "Coordenadas inexistentes"}
         assert json.loads(rv.get_data()) == result
 
 
@@ -59,7 +59,7 @@ def test_periodsearch():
                 result = search.period_search(file, datainicial, datafinal)
                 assert json.loads(rv.get_data()) == result
         rv = c.post(
-            "APItesteSomar/forecast/cidadeporperiodos?cidade=blablal&datainicial=2019-08-13&datafinal=2019-09-01")
-        result = {'message': "Cidade ou Periodo inexistente"}
+            "APItesteSomar/forecast/cidadeporperiodos?cidade=blablal&datainicial=2019-08-13&datafinal=2019-09-01"
+        )
+        result = {"message": "Cidade ou Periodo inexistente"}
         assert json.loads(rv.get_data()) == result
-
