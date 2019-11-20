@@ -1,7 +1,0 @@
-[run]
-omit =
-    /venv/*
-    # omit this single file
-    Procfile
-    readme.md
-    requirements.txt
