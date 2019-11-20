@@ -6,6 +6,6 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-  - pytest --cov=repo_test.py business_test.py
+  - pytest --cov=test/
 after_success:
   - coveralls
