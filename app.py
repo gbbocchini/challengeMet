@@ -3,7 +3,8 @@ from webargs import fields
 from webargs.flaskparser import use_kwargs
 from flask_restplus import Resource, abort, Api
 
-from application.business.search import Search
+from business.search import Search
+from repository.repository import Repository
 
 app = Flask(__name__)
 
