@@ -7,8 +7,8 @@ Untitled.ipynb
 tests.ipynb
 venv
 .idea
-helpers/__pycache__/
-repository/__pycache__/
+application/helpers/__pycache__/
+application/repository/__pycache__/
 Procfile
 .travis.yml
 __pycache__/

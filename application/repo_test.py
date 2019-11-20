@@ -1,8 +1,7 @@
-import pytest
 import json
 
-from app import app
-from repository.repository import Repository
+from application.app import app
+from application.repository.repository import Repository
 
 
 app.testing = True

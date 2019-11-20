@@ -1,9 +1,6 @@
-import pytest
-from flask import Response
 import json
-from app import app
-from business.search import Search
-from repository.repository import Repository
+from application.app import app
+from application.business.search import Search
 
 app.testing = True
 client = app.test_client()
